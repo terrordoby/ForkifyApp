@@ -1,0 +1,17 @@
+{
+  "name": "forkify",
+  "version": "1.0.0",
+  "description": "Recipe aplication",
+  "default": "index.html",
+  "author": "Gabriel Jorge",
+  "license": "MIT",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "2.8.2",
+    "parcel": "^2.8.2",
+    "sass": "1.26.10"
+  }
+}
