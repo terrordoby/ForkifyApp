@@ -577,20 +577,26 @@ const controlPaginationButtons = function(value) {
     (0, _resultViewDefault.default).render(_modal.searchResultsPerPage(value));
     (0, _paginationViewDefault.default).render(_modal.state.search);
 };
+const controlServices = function(newServing) {
+    _modal.updateServingsRecipe(newServing);
+    (0, _recipeViewDefault.default).render(_modal.state.recipe);
+};
 async function init() {
     (0, _recipeViewDefault.default).addHandlerEvents(showRecipe);
+    (0, _recipeViewDefault.default).addHandlerUpdateServings(controlServices);
     (0, _searchViewDefault.default).addHandleEvent(showSearchResult);
     (0, _paginationViewDefault.default).addEventClickHanlder(controlPaginationButtons);
 }
 init();
 
-},{"./modal":"aHHgN","./views/RecipeView":"aFEMw","./views/ResultView":"8cMC5","./views/SearchView":"c7Rpf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./views/PaginationView":"9Uw3J"}],"aHHgN":[function(require,module,exports) {
+},{"./modal":"aHHgN","./views/PaginationView":"9Uw3J","./views/RecipeView":"aFEMw","./views/ResultView":"8cMC5","./views/SearchView":"c7Rpf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aHHgN":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "state", ()=>state);
 parcelHelpers.export(exports, "loadRecipe", ()=>loadRecipe);
 parcelHelpers.export(exports, "searchRecipes", ()=>searchRecipes);
 parcelHelpers.export(exports, "searchResultsPerPage", ()=>searchResultsPerPage);
+parcelHelpers.export(exports, "updateServingsRecipe", ()=>updateServingsRecipe);
 var _config = require("./config");
 const state = {
     recipe: {},
@@ -628,7 +634,11 @@ function searchResultsPerPage(page = 1) {
     const end = page * 10;
     return state.search.results.slice(start, end);
 }
-searchRecipes();
+function updateServingsRecipe(newServing) {
+    const { recipe  } = state.recipe;
+    recipe.ingredients.forEach((ing)=>ing.quantity = ing.quantity * newServing / recipe.servings);
+    recipe.servings = newServing;
+}
 
 },{"./config":"k5Hzs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"k5Hzs":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -666,6 +676,125 @@ exports.export = function(dest, destName, get) {
     });
 };
 
+},{}],"9Uw3J":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _view = require("./View");
+var _viewDefault = parcelHelpers.interopDefault(_view);
+var _iconsSvg = require("url:../../img/icons.svg");
+var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
+class PaginationView extends (0, _viewDefault.default) {
+    _parentElement = document.querySelector(".pagination");
+    addEventClickHanlder(handler) {
+        this._parentElement.addEventListener("click", (e)=>{
+            const btn = e.target.closest(".btn--inline");
+            if (!btn) return;
+            const goTo = +btn.dataset.goto;
+            handler(goTo);
+        });
+    }
+    _generateMarkup() {
+        const numsPage = Math.ceil(this._data.results.length / this._data.searchResultsPerPage);
+        const currentPage = this._data.page;
+        if (currentPage === 1 && numsPage > 1) return `
+            <button data-goto=${currentPage + 1} class="btn--inline pagination__btn--next">
+                <span>Page ${currentPage + 1}</span>
+                <svg class="search__icon">
+                <use href="${0, _iconsSvgDefault.default}#icon-arrow-right"></use>
+                </svg>
+            </button>
+            `;
+        if (currentPage !== numsPage && currentPage > 1 && numsPage > 1) return ` 
+            <button data-goto=${currentPage - 1} class="btn--inline pagination__btn--prev">
+             <svg class="search__icon">
+             <use href="${0, _iconsSvgDefault.default}#icon-arrow-left"></use>
+             </svg>
+            <span>Page ${currentPage - 1}</span>
+           </button>
+           <button data-goto=${currentPage + 1} class="btn--inline pagination__btn--prev">
+            <svg class="search__icon">
+            <use href="${0, _iconsSvgDefault.default}#icon-arrow-right"></use>
+            </svg>
+            <span>Page ${currentPage + 1}</span>
+           </button>     
+            `;
+        if (currentPage === numsPage) return ` 
+            <button data-goto=${currentPage - 1} class="btn--inline pagination__btn--prev">
+                <svg class="search__icon">
+                <use href="${0, _iconsSvgDefault.default}#icon-arrow-left"></use>
+                </svg>
+                <span>Page ${currentPage - 1}</span>
+            </button>          
+            `;
+        return "";
+    }
+}
+exports.default = new PaginationView();
+
+},{"./View":"5cUXS","url:../../img/icons.svg":"loVOp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5cUXS":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _iconsSvg = require("url:../../img/icons.svg");
+var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
+class View {
+    _data;
+    render(data) {
+        this._data = data;
+        const markup = this._generateMarkup();
+        this._parentElement.innerHTML = "";
+        this._parentElement.insertAdjacentHTML("afterbegin", markup);
+    }
+    renderSpinner() {
+        const markup = `
+        <div class="spinner">
+          <svg>
+            <use href="${(0, _iconsSvgDefault.default)}#icon-loader"></use>
+          </svg>
+        </div>
+        `;
+        this._parentElement.innerHTML = "";
+        this._parentElement.insertAdjacentHTML("afterbegin", markup);
+    }
+}
+exports.default = View;
+
+},{"url:../../img/icons.svg":"loVOp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"loVOp":[function(require,module,exports) {
+module.exports = require("adb26cc99647b37a").getBundleURL("hWUTQ") + "icons.dfd7a6db.svg" + "?" + Date.now();
+
+},{"adb26cc99647b37a":"lgJ39"}],"lgJ39":[function(require,module,exports) {
+"use strict";
+var bundleURL = {};
+function getBundleURLCached(id) {
+    var value = bundleURL[id];
+    if (!value) {
+        value = getBundleURL();
+        bundleURL[id] = value;
+    }
+    return value;
+}
+function getBundleURL() {
+    try {
+        throw new Error();
+    } catch (err) {
+        var matches = ("" + err.stack).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^)\n]+/g);
+        if (matches) // The first two stack frames will be this function and getBundleURLCached.
+        // Use the 3rd one, which will be a runtime in the original bundle.
+        return getBaseURL(matches[2]);
+    }
+    return "/";
+}
+function getBaseURL(url) {
+    return ("" + url).replace(/^((?:https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/.+)\/[^/]+$/, "$1") + "/";
+} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+function getOrigin(url) {
+    var matches = ("" + url).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^/]+/);
+    if (!matches) throw new Error("Origin not found");
+    return matches[0];
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+exports.getOrigin = getOrigin;
+
 },{}],"aFEMw":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -700,12 +829,12 @@ class RecipeView extends (0, _viewDefault.default) {
             <span class="recipe__info-text">servings</span>
 
             <div class="recipe__info-buttons">
-              <button class="btn--tiny btn--increase-servings">
+              <button class="btn--tiny btn--increase-servings" data-updateTo=${this._data.recipe.servings - 1}>
                 <svg>
                   <use href="${0, _iconsSvgDefault.default}#icon-minus-circle"></use>
                 </svg>
               </button>
-              <button class="btn--tiny btn--increase-servings">
+              <button class="btn--tiny btn--increase-servings" data-updateTo=${this._data.recipe.servings + 1}>
                 <svg>
                   <use href="${0, _iconsSvgDefault.default}#icon-plus-circle"></use>
                 </svg>
@@ -768,74 +897,18 @@ class RecipeView extends (0, _viewDefault.default) {
         window.addEventListener("hashchange", handler);
         window.addEventListener("load", handler);
     }
+    addHandlerUpdateServings(handler) {
+        this._parentElement.addEventListener("click", (e)=>{
+            const btn = e.target.closest(".btn--tiny");
+            if (!btn) return;
+            const numberRecipes = btn.dataset.updateto;
+            if (+numberRecipes > 0) handler(+numberRecipes);
+        });
+    }
 }
 exports.default = new RecipeView();
 
-},{"url:../../img/icons.svg":"loVOp","./View":"5cUXS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"loVOp":[function(require,module,exports) {
-module.exports = require("5e664da1d7108a9d").getBundleURL("hWUTQ") + "icons.dfd7a6db.svg" + "?" + Date.now();
-
-},{"5e664da1d7108a9d":"lgJ39"}],"lgJ39":[function(require,module,exports) {
-"use strict";
-var bundleURL = {};
-function getBundleURLCached(id) {
-    var value = bundleURL[id];
-    if (!value) {
-        value = getBundleURL();
-        bundleURL[id] = value;
-    }
-    return value;
-}
-function getBundleURL() {
-    try {
-        throw new Error();
-    } catch (err) {
-        var matches = ("" + err.stack).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^)\n]+/g);
-        if (matches) // The first two stack frames will be this function and getBundleURLCached.
-        // Use the 3rd one, which will be a runtime in the original bundle.
-        return getBaseURL(matches[2]);
-    }
-    return "/";
-}
-function getBaseURL(url) {
-    return ("" + url).replace(/^((?:https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/.+)\/[^/]+$/, "$1") + "/";
-} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
-function getOrigin(url) {
-    var matches = ("" + url).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^/]+/);
-    if (!matches) throw new Error("Origin not found");
-    return matches[0];
-}
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-exports.getOrigin = getOrigin;
-
-},{}],"5cUXS":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _iconsSvg = require("url:../../img/icons.svg");
-var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
-class View {
-    _data;
-    render(data) {
-        this._data = data;
-        const markup = this._generateMarkup();
-        this._parentElement.innerHTML = "";
-        this._parentElement.insertAdjacentHTML("afterbegin", markup);
-    }
-    renderSpinner() {
-        const markup = `
-        <div class="spinner">
-          <svg>
-            <use href="${(0, _iconsSvgDefault.default)}#icon-loader"></use>
-          </svg>
-        </div>
-        `;
-        this._parentElement.innerHTML = "";
-        this._parentElement.insertAdjacentHTML("afterbegin", markup);
-    }
-}
-exports.default = View;
-
-},{"url:../../img/icons.svg":"loVOp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8cMC5":[function(require,module,exports) {
+},{"url:../../img/icons.svg":"loVOp","./View":"5cUXS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8cMC5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _view = require("./View");
@@ -890,61 +963,6 @@ class SearchView {
 }
 exports.default = new SearchView();
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9Uw3J":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _view = require("./View");
-var _viewDefault = parcelHelpers.interopDefault(_view);
-var _iconsSvg = require("url:../../img/icons.svg");
-var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
-class PaginationView extends (0, _viewDefault.default) {
-    _parentElement = document.querySelector(".pagination");
-    addEventClickHanlder(handler) {
-        this._parentElement.addEventListener("click", (e)=>{
-            const btn = e.target.closest(".btn--inline");
-            if (!btn) return;
-            const goTo = +btn.dataset.goto;
-            handler(goTo);
-        });
-    }
-    _generateMarkup() {
-        const numsPage = Math.ceil(this._data.results.length / this._data.searchResultsPerPage);
-        const currentPage = this._data.page;
-        if (currentPage === 1 && numsPage > 1) return `
-            <button data-goto=${currentPage + 1} class="btn--inline pagination__btn--next">
-                <span>Page ${currentPage + 1}</span>
-                <svg class="search__icon">
-                <use href="${0, _iconsSvgDefault.default}#icon-arrow-right"></use>
-                </svg>
-            </button>
-            `;
-        if (currentPage !== numsPage && currentPage > 1 && numsPage > 1) return ` 
-            <button data-goto=${currentPage - 1} class="btn--inline pagination__btn--prev">
-             <svg class="search__icon">
-             <use href="${0, _iconsSvgDefault.default}#icon-arrow-left"></use>
-             </svg>
-            <span>Page ${currentPage - 1}</span>
-           </button>
-           <button data-goto=${currentPage + 1} class="btn--inline pagination__btn--prev">
-            <svg class="search__icon">
-            <use href="${0, _iconsSvgDefault.default}#icon-arrow-right"></use>
-            </svg>
-            <span>Page ${currentPage + 1}</span>
-           </button>     
-            `;
-        if (currentPage === numsPage) return ` 
-            <button data-goto=${currentPage - 1} class="btn--inline pagination__btn--prev">
-                <svg class="search__icon">
-                <use href="${0, _iconsSvgDefault.default}#icon-arrow-left"></use>
-                </svg>
-                <span>Page ${currentPage - 1}</span>
-            </button>          
-            `;
-        return "";
-    }
-}
-exports.default = new PaginationView();
-
-},{"./View":"5cUXS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","url:../../img/icons.svg":"loVOp"}]},["fA0o9","aenu9"], "aenu9", "parcelRequire3a11")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["fA0o9","aenu9"], "aenu9", "parcelRequire3a11")
 
 //# sourceMappingURL=index.e37f48ea.js.map

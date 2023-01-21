@@ -48,8 +48,14 @@ const controlPaginationButtons = function(value) {
   PaginationView.render(model.state.search)
 }
 
+const controlServices = function(newServing) {
+  model.updateServingsRecipe(newServing)
+  RecipeView.render(model.state.recipe)
+}
+
 async function init() {
   RecipeView.addHandlerEvents(showRecipe)
+  RecipeView.addHandlerUpdateServings(controlServices)
   SearchView.addHandleEvent(showSearchResult)
   PaginationView.addEventClickHanlder(controlPaginationButtons)
 }
