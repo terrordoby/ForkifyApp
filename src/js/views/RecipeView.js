@@ -4,6 +4,7 @@ import View from './View';
 class RecipeView extends View {
     _parentElement =  document.querySelector('.recipe');
 
+
     _generateMarkup() {
         return `
         <figure class="recipe__fig">
@@ -49,7 +50,7 @@ class RecipeView extends View {
           </div>
           <button class="btn--round">
             <svg class="">
-              <use href="${icons}#icon-bookmark-fill"></use>
+              <use href="${icons}#icon-bookmark${this._data.recipe.bookmarked === true ? '-fill' : ''}"></use>
             </svg>
           </button>
         </div>
@@ -93,6 +94,14 @@ class RecipeView extends View {
         </div>      
         `
     }
+
+    addEventHandlerBookmark(handler) {
+      this._parentElement.addEventListener('click', (e) => {
+        const btnBookmark = e.target.closest('.btn--round')
+        if (!btnBookmark) return 
+        handler()
+      })
+    } 
 
     addHandlerEvents(handler) {
       window.addEventListener('hashchange', handler)

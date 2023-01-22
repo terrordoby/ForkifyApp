@@ -53,9 +53,19 @@ const controlServices = function(newServing) {
   RecipeView.render(model.state.recipe)
 }
 
+const controlBookmarks = function() {
+  if (model.state.recipe.recipe.bookmarked === false) {
+    model.addRecipeBookmark(model.state.recipe)
+  } else {
+    model.deleteRecipeBookmark(model.state.recipe)
+  }
+  RecipeView.render(model.state.recipe)
+}
+
 async function init() {
   RecipeView.addHandlerEvents(showRecipe)
   RecipeView.addHandlerUpdateServings(controlServices)
+  RecipeView.addEventHandlerBookmark(controlBookmarks)
   SearchView.addHandleEvent(showSearchResult)
   PaginationView.addEventClickHanlder(controlPaginationButtons)
 }
