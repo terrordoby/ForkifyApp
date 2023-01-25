@@ -1,4 +1,5 @@
 import * as model from './modal'
+import BookmarksView from './views/BookmarksView';
 import  PaginationView  from './views/PaginationView';
 import RecipeView from './views/RecipeView';
 import ResultView from './views/ResultView';
@@ -56,6 +57,7 @@ const controlServices = function(newServing) {
 const controlBookmarks = function() {
   if (model.state.recipe.recipe.bookmarked === false) {
     model.addRecipeBookmark(model.state.recipe)
+    BookmarksView.render(model.state.bookmarks)
   } else {
     model.deleteRecipeBookmark(model.state.recipe)
   }

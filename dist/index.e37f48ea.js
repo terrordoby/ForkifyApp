@@ -534,6 +534,8 @@ function hmrAcceptRun(bundle, id) {
 },{}],"aenu9":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _modal = require("./modal");
+var _bookmarksView = require("./views/BookmarksView");
+var _bookmarksViewDefault = parcelHelpers.interopDefault(_bookmarksView);
 var _paginationView = require("./views/PaginationView");
 var _paginationViewDefault = parcelHelpers.interopDefault(_paginationView);
 var _recipeView = require("./views/RecipeView");
@@ -582,8 +584,10 @@ const controlServices = function(newServing) {
     (0, _recipeViewDefault.default).render(_modal.state.recipe);
 };
 const controlBookmarks = function() {
-    if (_modal.state.recipe.recipe.bookmarked === false) _modal.addRecipeBookmark(_modal.state.recipe);
-    else _modal.deleteRecipeBookmark(_modal.state.recipe);
+    if (_modal.state.recipe.recipe.bookmarked === false) {
+        _modal.addRecipeBookmark(_modal.state.recipe);
+        (0, _bookmarksViewDefault.default).render(_modal.state.bookmarks);
+    } else _modal.deleteRecipeBookmark(_modal.state.recipe);
     (0, _recipeViewDefault.default).render(_modal.state.recipe);
 };
 async function init() {
@@ -595,7 +599,7 @@ async function init() {
 }
 init();
 
-},{"./modal":"aHHgN","./views/PaginationView":"9Uw3J","./views/RecipeView":"aFEMw","./views/ResultView":"8cMC5","./views/SearchView":"c7Rpf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aHHgN":[function(require,module,exports) {
+},{"./modal":"aHHgN","./views/PaginationView":"9Uw3J","./views/RecipeView":"aFEMw","./views/ResultView":"8cMC5","./views/SearchView":"c7Rpf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./views/BookmarksView":"5GCfw"}],"aHHgN":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "state", ()=>state);
@@ -993,6 +997,39 @@ class SearchView {
 }
 exports.default = new SearchView();
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["fA0o9","aenu9"], "aenu9", "parcelRequire3a11")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5GCfw":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _view = require("./View");
+var _viewDefault = parcelHelpers.interopDefault(_view);
+class BookMarksView extends (0, _viewDefault.default) {
+    _parentElment = document.querySelector(".bookmarks__list");
+    _generateMarkup() {
+        return this._data.map(this.generateMarkupPreview).join();
+    }
+    generateMarkupPreview(result) {
+        return `
+         <li class="preview">
+         <a class="preview__link preview__link--active" href="#${result.id} ">
+         <figure class="preview__fig">
+             <img src="${result.image_url}" alt="Test" />
+         </figure>
+         <div class="preview__data">
+             <h4 class="preview__title">${result.title}</h4>
+             <p class="preview__publisher">${result.publisher}</p>
+             <div class="preview__user-generated">
+             <svg>
+                 <use href="src/img/icons.svg#icon-user"></use>
+             </svg>
+             </div>
+         </div>
+         </a>
+     </li>
+         `;
+    }
+}
+exports.default = new BookMarksView();
+
+},{"./View":"5cUXS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["fA0o9","aenu9"], "aenu9", "parcelRequire3a11")
 
 //# sourceMappingURL=index.e37f48ea.js.map

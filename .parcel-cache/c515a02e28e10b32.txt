@@ -20,7 +20,7 @@
 79C:\Users\gabri\Desktop\starter\node_modules\css-tree\lib\syntax\atrule\index.js133154536426550000 0
 50C:\Users\gabri\Desktop\starter\node_modules\semver133186998809078823 1
 52C:\Users\gabri\Desktop\starter\node_modules\get-port133186998777395880 1
-54C:\Users\gabri\Desktop\starter\dist\icons.dfd7a6db.svg133187812097397396 0
+54C:\Users\gabri\Desktop\starter\dist\icons.dfd7a6db.svg133188636704195438 0
 42C:\Users\gabri\Desktop\starter\.prettierrc132886947190000000 0
 75C:\Users\gabri\Desktop\starter\node_modules\css-tree\lib\syntax\node\Url.js133154536426550000 0
 59C:\Users\gabri\Desktop\starter\forkify-flowchart-part-1.png132886947190000000 0
@@ -34,7 +34,7 @@
 67C:\Users\gabri\Desktop\starter\node_modules\ordered-binary\index.js133180037505380000 0
 91C:\Users\gabri\Desktop\starter\node_modules\caniuse-lite\data\features\css-focus-visible.js133180037453750000 0
 89C:\Users\gabri\Desktop\starter\node_modules\@parcel\runtime-browser-hmr\src\HMRRuntime.js133180037406840000 0
-35C:\Users\gabri\Desktop\starter\dist133187813908636645 1
+35C:\Users\gabri\Desktop\starter\dist133188672604088142 1
 73C:\Users\gabri\Desktop\starter\node_modules\update-browserslist-db\cli.js133133510125670000 0
 78C:\Users\gabri\Desktop\starter\node_modules\cosmiconfig\dist\getDirectory.d.ts133154533605930000 0
 116C:\Users\gabri\Desktop\starter\node_modules\msgpackr-extract\node_modules\.bin\node-gyp-build-optional-packages-test133180039216681783 0
@@ -42,7 +42,7 @@
 70C:\Users\gabri\Desktop\starter\forkify-architecture-recipe-loading.png132886947190000000 0
 104C:\Users\gabri\Desktop\starter\node_modules\htmlnano\docs\versioned_docs\version-2.0.0\060-contribute.md133180037445580000 0
 88C:\Users\gabri\Desktop\starter\node_modules\@parcel\runtime-js\src\helpers\bundle-url.js133180037411120000 0
-57C:\Users\gabri\Desktop\starter\src\js\views\RecipeView.js133187813908029178 0
+57C:\Users\gabri\Desktop\starter\src\js\views\RecipeView.js133188656212923080 0
 59C:\Users\gabri\Desktop\starter\forkify-flowchart-part-2.png132886947190000000 0
 62C:\Users\gabri\Desktop\starter\node_modules\is-number\index.js133133510138030000 0
 89C:\Users\gabri\Desktop\starter\node_modules\caniuse-lite\data\features\input-inputmode.js133180037453750000 0
@@ -128,7 +128,7 @@
 62C:\Users\gabri\Desktop\starter\node_modules\chrome-trace-event133186998754287396 1
 80C:\Users\gabri\Desktop\starter\node_modules\v8-compile-cache\v8-compile-cache.js133180037384990000 0
 93C:\Users\gabri\Desktop\starter\node_modules\@swc\helpers\src\_initializer_define_property.mjs133145060104710000 0
-46C:\Users\gabri\Desktop\starter\src\js\modal.js133187808436170272 0
+46C:\Users\gabri\Desktop\starter\src\js\modal.js133188672603757906 0
 77C:\Users\gabri\Desktop\starter\node_modules\svgo\plugins\removeXMLProcInst.js133180037439570000 0
 56C:\Users\gabri\Desktop\starter\src\sass\_components.scss132886947190000000 0
 74C:\Users\gabri\Desktop\starter\node_modules\svgo\plugins\preset-default.js133180037439570000 0
@@ -170,7 +170,7 @@
 47C:\Users\gabri\Desktop\starter\src\js\config.js133182696028080095 0
 91C:\Users\gabri\Desktop\starter\node_modules\@parcel\resolver-default\lib\DefaultResolver.js133180037402930000 0
 76C:\Users\gabri\Desktop\starter\node_modules\term-size\vendor\macos\.DS_Store133180037433220000 0
-51C:\Users\gabri\Desktop\starter\src\js\controller.js133187807749954999 0
+51C:\Users\gabri\Desktop\starter\src\js\controller.js133188671798437132 0
 75C:\Users\gabri\Desktop\starter\node_modules\caniuse-lite\data\regions\HT.js133180037453750000 0
 80C:\Users\gabri\Desktop\starter\node_modules\caniuse-lite\data\features\brotli.js133180037453750000 0
 85C:\Users\gabri\Desktop\starter\node_modules\caniuse-lite\data\features\svg-filters.js133180037453750000 0
@@ -1852,7 +1852,7 @@
 59C:\Users\gabri\Desktop\starter\node_modules\is-glob\LICENSE133133510122790000 0
 80C:\Users\gabri\Desktop\starter\node_modules\css-tree\lib\syntax\scope\default.js133154536426550000 0
 62C:\Users\gabri\Desktop\starter\node_modules\micromatch\LICENSE133133510102920000 0
-57C:\Users\gabri\Desktop\starter\dist\index.e37f48ea.js.map133187813908636645 0
+57C:\Users\gabri\Desktop\starter\dist\index.e37f48ea.js.map133188672604058048 0
 99C:\Users\gabri\Desktop\starter\node_modules\lmdb\dependencies\lz4\lib\dll\example\fullbench-dll.sln133180037453830000 0
 89C:\Users\gabri\Desktop\starter\node_modules\caniuse-lite\data\features\x-frame-options.js133180037453750000 0
 81C:\Users\gabri\Desktop\starter\node_modules\css-tree\lib\syntax\pseudo\slotted.js133154536426550000 0
@@ -2941,7 +2941,7 @@
 57C:\Users\gabri\Desktop\starter\node_modules\@parcel\cache133186998623619839 1
 78C:\Users\gabri\Desktop\starter\node_modules\@parcel\optimizer-css\node_modules133186998649848921 1
 75C:\Users\gabri\Desktop\starter\node_modules\caniuse-lite\data\regions\ZM.js133180037453750000 0
-53C:\Users\gabri\Desktop\starter\dist\index.e37f48ea.js133187813908556651 0
+53C:\Users\gabri\Desktop\starter\dist\index.e37f48ea.js133188672604017933 0
 75C:\Users\gabri\Desktop\starter\node_modules\caniuse-lite\data\regions\ZW.js133180037453750000 0
 81C:\Users\gabri\Desktop\starter\node_modules\@swc\helpers\lib\_set_prototype_of.js133145060104710000 0
 77C:\Users\gabri\Desktop\starter\node_modules\caniuse-lite\data\features\aac.js133180037453750000 0
@@ -4507,12 +4507,12 @@
 55C:\Users\gabri\Desktop\starter\node_modules\.bin\semver133180039218743012 0
 53C:\Users\gabri\Desktop\starter\node_modules\.bin\svgo133180039218812954 0
 59C:\Users\gabri\Desktop\starter\node_modules\.bin\terser.cmd133180039218923276 0
-56C:\Users\gabri\Desktop\starter\dist\favicon.8b2f57bf.png133187812095440537 0
-54C:\Users\gabri\Desktop\starter\dist\icons.21bad73c.svg133187812096221513 0
+56C:\Users\gabri\Desktop\starter\dist\favicon.8b2f57bf.png133188636703855430 0
+54C:\Users\gabri\Desktop\starter\dist\icons.21bad73c.svg133188636704245441 0
 53C:\Users\gabri\Desktop\starter\dist\index.62406edb.js133180039258549475 0
-54C:\Users\gabri\Desktop\starter\dist\index.f7626f62.css133187812096766754 0
-58C:\Users\gabri\Desktop\starter\dist\index.f7626f62.css.map133187812096816716 0
-46C:\Users\gabri\Desktop\starter\dist\index.html133187793576471373 0
-53C:\Users\gabri\Desktop\starter\dist\logo.726d37a8.png133187812096546743 0
+54C:\Users\gabri\Desktop\starter\dist\index.f7626f62.css133188636703855430 0
+58C:\Users\gabri\Desktop\starter\dist\index.f7626f62.css.map133188636704365516 0
+46C:\Users\gabri\Desktop\starter\dist\index.html133188636704195438 0
+53C:\Users\gabri\Desktop\starter\dist\logo.726d37a8.png133188636703885421 0
 55C:\Users\gabri\Desktop\starter\dist\starter.3464ddca.js133180039258549475 0
 59C:\Users\gabri\Desktop\starter\dist\starter.3464ddca.js.map133180039258549475 0
